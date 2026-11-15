@@ -170,6 +170,7 @@ All notable changes to Gogs are documented in this file.
 - Creating, commenting on, or closing an issue in a fork no longer fails with a server error. [#8626](https://github.com/gogs/gogs/pull/8626)
 - The API no longer shows the parent of a fork to those who cannot read it, e.g., after the owner of the fork is removed as a collaborator of a private base repository, and the parent shows the permissions of the user on it instead of always read access. Webhook payloads no longer show a private parent. Listing the forks of a repository through the API no longer includes private forks the user cannot read. [#8626](https://github.com/gogs/gogs/pull/8626)
 - Starting Gogs with `gogs web --port` no longer replaces the port of `[server] EXTERNAL_URL` when it differs from `HTTP_PORT`, e.g., behind a reverse proxy, so clone URLs and links keep the configured port. [#8605](https://github.com/gogs/gogs/pull/8605)
+Migrating a repository from an SSH clone address now explains that SSH is not supported instead of reporting that importing local repositories is not allowed. [#6954](https://github.com/gogs/gogs/issues/6954)
 
 ### Removed
 

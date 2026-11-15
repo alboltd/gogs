@@ -154,6 +154,7 @@ All notable changes to Gogs are documented in this file.
 - When SSH keys are checked with `ssh-keygen`, adding a key it cannot read no longer shows paths of temporary files on the server, and a failure to run the check is reported as a server error instead of an invalid key. [#8641](https://github.com/gogs/gogs/pull/8641)
 - Adding an SSH or deploy key while SSH is disabled now says that SSH is disabled, instead of saying that the key is invalid. [#8641](https://github.com/gogs/gogs/pull/8641)
 - Markdown no longer links parts of UUIDs and other hex strings that are not commits, e.g., `deadbeef`, to commits that do not exist. [#8640](https://github.com/gogs/gogs/pull/8640)
+- Listing releases through the API no longer shows drafts to users without write access. [#8571](https://github.com/gogs/gogs/pull/8571)
 
 ### Removed
 

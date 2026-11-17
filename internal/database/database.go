@@ -33,7 +33,7 @@ var Tables = []any{
 	new(Notice),
 	new(OrgUser),
 	new(Passkey), new(ProtectBranch), new(PublicKey), new(PullRequest),
-	new(Release),
+	new(Release), new(Review), new(ReviewRequest),
 	new(Star),
 	new(Team), new(TeamRepo), new(TeamUser), new(TwoFactor), new(TwoFactorRecoveryCode),
 	new(Upload), new(User),
@@ -221,6 +221,10 @@ func (db *DB) Releases() *ReleasesStore {
 
 func (db *DB) Repositories() *RepositoriesStore {
 	return newReposStore(db.db)
+}
+
+func (db *DB) Reviews() *ReviewsStore {
+	return newReviewsStore(db.db)
 }
 
 func (db *DB) Teams() *TeamsStore {

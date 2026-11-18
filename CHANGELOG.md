@@ -164,6 +164,7 @@ All notable changes to Gogs are documented in this file.
 - The API no longer shows the parent of a fork to those who cannot read it, e.g., after the owner of the fork is removed as a collaborator of a private base repository, and the parent shows the permissions of the user on it instead of always read access. Webhook payloads no longer show a private parent. Listing the forks of a repository through the API no longer includes private forks the user cannot read. [#8626](https://github.com/gogs/gogs/pull/8626)
 - Starting Gogs with `gogs web --port` no longer replaces the port of `[server] EXTERNAL_URL` when it differs from `HTTP_PORT`, e.g., behind a reverse proxy, so clone URLs and links keep the configured port. [#8605](https://github.com/gogs/gogs/pull/8605)
 - `gogs backup` no longer needs free space in the system temporary directory for the whole archive, and respects `--tempdir`. [#8614](https://github.com/gogs/gogs/pull/8614)
+- `gogs backup --exclude-mirror-repos` no longer fails when the name of a repository or its owner has upper case letters, and now includes the wikis of the repositories. [#6497](https://github.com/gogs/gogs/issues/6497)
 
 ### Removed
 

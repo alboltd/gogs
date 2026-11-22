@@ -31,7 +31,7 @@ All notable changes to Gogs are documented in this file.
 - API endpoints to create branches and tags: `POST /repos/{owner}/{repo}/branches` and `POST /repos/{owner}/{repo}/tags`. [#8566](https://github.com/gogs/gogs/pull/8566)
 - API endpoint for an access token to delete itself: `DELETE /user/token`, e.g., for a tool to revoke its token when it is done. [#8574](https://github.com/gogs/gogs/pull/8574)
 - Commit pages link issue references and @mentions in commit messages, and commit lists and file lists also link @mentions. [#8628](https://github.com/gogs/gogs/pull/8628)
-- API endpoints to get, create, edit and delete releases: `GET`, `PATCH` and `DELETE /repos/{owner}/{repo}/releases/{id}`, and `POST /repos/{owner}/{repo}/releases`. Their files can be uploaded and listed with `POST` and `GET /repos/{owner}/{repo}/releases/{id}/assets`, and got, renamed and deleted with `GET`, `PATCH` and `DELETE /repos/{owner}/{repo}/releases/assets/{asset_id}`. Releases in API responses and `release` webhooks list their files in `assets`. [#8571](https://github.com/gogs/gogs/pull/8571)
+- API endpoints to get, create, edit and delete releases: `GET`, `PATCH` and `DELETE /repos/{owner}/{repo}/releases/{id}`, and `POST /repos/{owner}/{repo}/releases`. Their files can be uploaded and listed with `POST` and `GET /repos/{owner}/{repo}/releases/{id}/assets`, and retrieved, downloaded with `Accept: application/octet-stream`, renamed and deleted with `GET`, `PATCH` and `DELETE /repos/{owner}/{repo}/releases/assets/{asset_id}`. Releases in API responses and `release` webhooks list their files in `assets`. [#8571](https://github.com/gogs/gogs/pull/8571)
 
 ### Changed
 
@@ -158,6 +158,8 @@ All notable changes to Gogs are documented in this file.
 - A release of a tag that already exists is now dated by the tag's commit instead of when the release was created, so it no longer always shows as the newest release. [#8571](https://github.com/gogs/gogs/pull/8571)
 - Listing releases through the API no longer shows the email address of the user who published a release to unauthenticated callers. [#8571](https://github.com/gogs/gogs/pull/8571)
 - Creating a release with an invalid tag name, including as a draft, is now refused instead of the tag name being changed or the draft failing when it is published. [#8571](https://github.com/gogs/gogs/pull/8571)
+- Files of draft releases can no longer be downloaded by users without write access to the repository. [#8571](https://github.com/gogs/gogs/pull/8571)
+- Downloading an attached file whose name contains a double quote now keeps its whole name. [#8571](https://github.com/gogs/gogs/pull/8571)
 
 ### Removed
 

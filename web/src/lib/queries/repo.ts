@@ -905,6 +905,8 @@ export interface RepoPullData extends RepoIssueData {
   reviewers: RepoPullReviewer[];
   reviewDecision?: "approved" | "changes_requested" | "review_required";
   requiredApprovals?: number;
+  // approvals is how many approvals count toward requiredApprovals.
+  approvals: number;
   mergeBlockers: ("approvals" | "changes_requested" | "unresolved_conversations")[];
   viewerPendingReview?: { commentCount: number };
   reviewerOptions?: IssueUser[];
@@ -912,6 +914,7 @@ export interface RepoPullData extends RepoIssueData {
 
 export interface CodeCommentForm {
   path: string;
+  oldPath?: string;
   side: "old" | "new";
   startSide: "old" | "new";
   startLine: number;

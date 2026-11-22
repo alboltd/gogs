@@ -379,7 +379,7 @@ func toRepoIssueView(ctx context.Context, logger *logx.Logger, viewer *database.
 		IsClosed:    issue.IsClosed,
 		Poster:      toIssueUser(issue.Poster),
 		CreatedAt:   issue.Created.UTC(),
-		ContentHTML: embedPermalinks(ctx, logger, repoCtx.Owner.Name, repo.Name, repoCtx.Viewer.CanRead(), string(markup.MarkdownWithCommits(issue.Content, repo.Link(), metas, commits))),
+		ContentHTML: embedPermalinks(ctx, logger, repoCtx, string(markup.MarkdownWithCommits(issue.Content, repo.Link(), metas, commits))),
 		Content:     issue.Content,
 		Attachments: toIssueAttachments(issue.Attachments, issue.Content),
 		Comments:    make([]issueComment, 0, len(issue.Comments)),
@@ -525,7 +525,7 @@ func (cv *commentViewer) toItem(comment *database.Comment) issueComment {
 		Pending:   comment.IsPending,
 	}
 	if comment.Content != "" {
-		item.ContentHTML = embedPermalinks(cv.ctx, cv.logger, cv.repoCtx.Owner.Name, repo.Name, cv.repoCtx.Viewer.CanRead(), string(markup.MarkdownWithCommits(comment.Content, repo.Link(), cv.metas, cv.commits)))
+		item.ContentHTML = embedPermalinks(cv.ctx, cv.logger, cv.repoCtx, string(markup.MarkdownWithCommits(comment.Content, repo.Link(), cv.metas, cv.commits)))
 	}
 	item.Attachments = toIssueAttachments(comment.Attachments, comment.Content)
 	// The poster and admins can change a comment. The summary of a review is
@@ -941,7 +941,7 @@ func postRepoMarkdown(c flamego.Context, logger *logx.Logger, repoCtx *repoConte
 		fileLink := repo.Link() + "/src/" + escapePath(req.Branch) + "/" + escapePath(pathx.Clean(req.Path))
 		html = markup.MarkdownFile(req.Text, path.Dir(fileLink), repoCtx.metas())
 	default:
-		html = []byte(embedPermalinks(c.Request().Context(), logger, repoCtx.Owner.Name, repo.Name, repoCtx.Viewer.CanRead(), string(markup.Markdown(req.Text, repo.Link(), repoCtx.metas()))))
+		html = []byte(embedPermalinks(c.Request().Context(), logger, repoCtx, string(markup.Markdown(req.Text, repo.Link(), repoCtx.metas()))))
 	}
 	return http.StatusOK, map[string]string{"html": string(html)}, nil
 }

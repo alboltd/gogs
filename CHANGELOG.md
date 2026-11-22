@@ -161,6 +161,7 @@ All notable changes to Gogs are documented in this file.
 - Creating, commenting on, or closing an issue in a fork no longer fails with a server error. [#8626](https://github.com/gogs/gogs/pull/8626)
 - The API no longer shows the parent of a fork to those who cannot read it, e.g., after the owner of the fork is removed as a collaborator of a private base repository, and the parent shows the permissions of the user on it instead of always read access. Webhook payloads no longer show a private parent. Listing the forks of a repository through the API no longer includes private forks the user cannot read. [#8626](https://github.com/gogs/gogs/pull/8626)
 - The raw view of a symbolic link shows its target instead of failing. [#8609](https://github.com/gogs/gogs/pull/8609)
+- Opening a path that goes through a file, symbolic link, or submodule, e.g., `README.md/x`, in the code browser or through the API now says that it does not exist, instead of failing with a server error or showing a file of the commit that the submodule points to. [#8609](https://github.com/gogs/gogs/pull/8609)
 
 ### Removed
 
